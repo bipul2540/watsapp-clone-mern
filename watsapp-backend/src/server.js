@@ -1,6 +1,7 @@
 const express = require("express");
 const Pusher = require("pusher");
 const mongoose = require("mongoose");
+const cors = require("cors");
 // in Connect we have server for database
 require("./connect");
 const MessageContent = require("./chatSchema");
@@ -8,11 +9,7 @@ const MessageContent = require("./chatSchema");
 const app = express();
 const port = process.env.PORT || 8001;
 app.use(express.json());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  next();
-});
+app.use(cors());
 
 const pusher = new Pusher({
   appId: "1137679",
